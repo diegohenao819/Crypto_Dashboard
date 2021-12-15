@@ -36,7 +36,7 @@ function Newsfeed() {
 
     return (
         <div className="news-feed">
-            <h2>News Feed</h2>
+            <h2>News Feed.</h2>
             {first7Articles?.map((article, index) => (
                 <div key={index}>
                     <a href={article.url}>
