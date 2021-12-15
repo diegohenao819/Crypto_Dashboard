@@ -11,21 +11,23 @@ function Newsfeed() {
 
 
 
-        const options = {
-            method: 'GET',
-            url: 'https://crypto-news15.p.rapidapi.com/news',
-            headers: {
-                'x-rapidapi-host': 'crypto-news15.p.rapidapi.com',
-                'x-rapidapi-key': process.env.REACT_APP_RAPID_API_KEY
-            }
-        };
+       
 
-        axios.request(options).then(function (response) {
-            console.log(response.data);
-            setArticles(response.data)
-        }).catch(function (error) {
-            console.error(error);
-        });
+const options = {
+  method: 'GET',
+  url: 'https://crypto-news6.p.rapidapi.com/news',
+  headers: {
+    'x-rapidapi-host': 'crypto-news6.p.rapidapi.com',
+    'x-rapidapi-key': '30635ea257msh3ae65927efb5323p1c9a89jsn6579c121c065'
+  }
+};
+
+axios.request(options).then(function (response) {
+	console.log(response.data);
+    setArticles(response.data)
+}).catch(function (error) {
+	console.error(error);
+});
 
 
 
