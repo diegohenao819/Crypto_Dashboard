@@ -4,7 +4,7 @@ import axios from 'axios'
 
 function CurrencyConverter() {
 
-    const currencies = ['BTC', 'ETH', 'USD', 'XRP', 'LTC', 'ADA']
+    const currencies = ['BTC', 'ETH', 'USD', 'XRP', 'LTC', 'ADA', 'COP']
 
     const [chosenPrimaryCurrency, setChosenPrimaryCurrency] = useState('BTC')
     const [chosenSecondaryCurrency, setChosenSecondaryCurrency] = useState('BTC')
@@ -23,7 +23,7 @@ function CurrencyConverter() {
             params: { from_currency: chosenPrimaryCurrency, function: 'CURRENCY_EXCHANGE_RATE', to_currency: chosenSecondaryCurrency },
             headers: {
                 'x-rapidapi-host': 'alpha-vantage.p.rapidapi.com',
-                'x-rapidapi-key': '30635ea257msh3ae65927efb5323p1c9a89jsn6579c121c065'
+                'x-rapidapi-key': process.env.REACT_APP_RAPID_API_KEY
             }
         };
 
@@ -69,9 +69,9 @@ function CurrencyConverter() {
                             <td>Secondary Currency:</td>
                             <td>
                                 <input
-                                    type="number"
+                                    type="currency"
                                     name="currency-amount-2"
-                                    value={result}
+                                    value={new Intl.NumberFormat().format(parseFloat(result))}
                                     disabled
                                 />
                             </td>
@@ -87,7 +87,11 @@ function CurrencyConverter() {
                 </table>
                 <button id='convert-button' onClick={convert}>Convert</button>
             </div>
-            <ExchangeRate />
+            <ExchangeRate 
+                exchangeRate={new Intl.NumberFormat().format(parseFloat(exchangeRate))}
+                chosenPrimaryCurrency={chosenPrimaryCurrency}
+                chosenSecondaryCurrency={chosenSecondaryCurrency}
+            />
         </div>
     )
 }
